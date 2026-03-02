@@ -38,13 +38,27 @@
     font-size: 0.85em;
   }
 
+  /* タブグループラベル */
+  .tab-group-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #999;
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+  }
+
   /* タブ */
   .tabs {
     display: flex;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .tabs.genre-tabs {
+    margin-bottom: 20px;
   }
 
   .tab-btn {
@@ -68,11 +82,17 @@
   .tab-btn[data-cat="tomoka"]  { background: #fce4ec; color: #c62828; }
   .tab-btn[data-cat="souta"]   { background: #e8f5e9; color: #2e7d32; }
   .tab-btn[data-cat="taisei"]  { background: #fff3e0; color: #e65100; }
+  .tab-btn[data-cat="beach"]   { background: #e0f7fa; color: #00838f; }
+  .tab-btn[data-cat="snowboard"] { background: #e8eaf6; color: #283593; }
+  .tab-btn[data-cat="fishing"] { background: #f1f8e9; color: #558b2f; }
 
   .tab-btn.active[data-cat="kenji"]   { background: #1565c0; color: #fff; }
   .tab-btn.active[data-cat="tomoka"]  { background: #c62828; color: #fff; }
   .tab-btn.active[data-cat="souta"]   { background: #2e7d32; color: #fff; }
   .tab-btn.active[data-cat="taisei"]  { background: #e65100; color: #fff; }
+  .tab-btn.active[data-cat="beach"]   { background: #00838f; color: #fff; }
+  .tab-btn.active[data-cat="snowboard"] { background: #283593; color: #fff; }
+  .tab-btn.active[data-cat="fishing"] { background: #558b2f; color: #fff; }
 
   /* 進捗バー */
   .progress-area {
@@ -279,11 +299,19 @@
     <p>名前を選んで持ち物をチェックしよう！</p>
   </header>
 
-  <div class="tabs">
+  <div class="tab-group-label">👨‍👩‍👦‍👦 家族</div>
+  <div class="tabs family-tabs">
     <button class="tab-btn active" data-cat="kenji" onclick="switchTab('kenji')">👨 健治</button>
     <button class="tab-btn" data-cat="tomoka" onclick="switchTab('tomoka')">👩 朋香</button>
     <button class="tab-btn" data-cat="souta" onclick="switchTab('souta')">👦 颯太</button>
     <button class="tab-btn" data-cat="taisei" onclick="switchTab('taisei')">👦 大晟</button>
+  </div>
+
+  <div class="tab-group-label">🎯 ジャンル</div>
+  <div class="tabs genre-tabs">
+    <button class="tab-btn" data-cat="beach" onclick="switchTab('beach')">🏖️ 海・プール</button>
+    <button class="tab-btn" data-cat="snowboard" onclick="switchTab('snowboard')">🏂 スノボ</button>
+    <button class="tab-btn" data-cat="fishing" onclick="switchTab('fishing')">🎣 釣り</button>
   </div>
 
   <div class="progress-area">
@@ -310,16 +338,18 @@
     <div class="category-card">
       <div class="category-title">🧴 洗面・衛生用品</div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">歯ブラシ・歯磨き粉</span></div>
-      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">シャンプー・ボディソープ</span></div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">洗顔料・スキンケア</span></div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ヘアブラシ・ドライヤー</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ヘアワックス</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">髭剃り</span></div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">コンタクト用品</span></div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">常備薬</span></div>
     </div>
     <div class="category-card">
       <div class="category-title">📱 電子機器</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">パソコン</span></div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">充電器・モバイルバッテリー</span></div>
-      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">イヤホン</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">睡眠用イヤホン</span></div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">メガネ</span></div>
     </div>
     <div class="category-card">
@@ -417,6 +447,107 @@
     <div class="category-card">
       <div class="category-title">🎒 その他</div>
       <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">手持ちバッグ</span></div>
+    </div>
+  </div>
+
+  <!-- 海・プール -->
+  <div class="checklist-section" data-cat="beach">
+    <div class="category-card">
+      <div class="category-title">👙 水着・ウェア</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">水着</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ラッシュガード</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">サンダル・マリンシューズ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">帽子・サンバイザー</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">🏖️ ビーチグッズ</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">バスタオル・ビーチタオル</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">レジャーシート</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">浮き輪・フロート</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ゴーグル・シュノーケル</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">防水バッグ・防水ケース</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">☀️ 日焼け対策</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">日焼け止め</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">サングラス</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">アフターサンケア</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">🎒 その他</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">着替え用のビニール袋</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">飲み物・クーラーボックス</span></div>
+    </div>
+  </div>
+
+  <!-- スノボ -->
+  <div class="checklist-section" data-cat="snowboard">
+    <div class="category-card">
+      <div class="category-title">🏂 ボード用品</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">スノーボード</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ビンディング</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ブーツ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">リーシュコード</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">🧥 ウェア・防寒</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">スノーウェア（上下）</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">インナーウェア</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">厚手の靴下</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ネックウォーマー・フェイスマスク</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">グローブ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ニット帽・ヘルメット</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">🥽 アクセサリー</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ゴーグル</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">プロテクター（ケツパッド等）</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">リフト券入れ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">日焼け止め</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">🎒 その他</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">着替え（帰り用）</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">タオル</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">カイロ</span></div>
+    </div>
+  </div>
+
+  <!-- 釣り -->
+  <div class="checklist-section" data-cat="fishing">
+    <div class="category-card">
+      <div class="category-title">🎣 釣り道具</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ロッド（竿）</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">リール</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">仕掛け・ルアー</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ライン（予備）</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">エサ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">タックルボックス</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">🪣 便利グッズ</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">クーラーボックス</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">バケツ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">玉網（タモ）</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ハサミ・プライヤー</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">フィッシュグリップ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">計量器・メジャー</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">👕 服装・安全</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ライフジャケット</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">長靴・防水シューズ</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">レインウェア</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">帽子</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">偏光サングラス</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">日焼け止め</span></div>
+    </div>
+    <div class="category-card">
+      <div class="category-title">🎒 その他</div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">タオル</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">飲み物・軽食</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">ゴミ袋</span></div>
+      <div class="check-item" onclick="toggle(this)"><input type="checkbox"><span class="checkmark"></span><span class="item-label">釣り券（必要な場合）</span></div>
     </div>
   </div>
 
